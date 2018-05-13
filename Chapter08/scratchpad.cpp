@@ -36,7 +36,7 @@
 // Section: Opening a File
 // -----------------------------------------------------------------------------
 
-#if 1
+#if SNIPPET01
 
 #include <fstream>
 #include <iostream>
@@ -53,7 +53,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET02
 
 #include <fstream>
 #include <iostream>
@@ -70,7 +70,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET03
 
 #include <fstream>
 #include <iostream>
@@ -88,7 +88,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET04
 
 #include <fstream>
 #include <iostream>
@@ -110,7 +110,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET05
 
 #include <fstream>
 #include <iostream>
@@ -128,7 +128,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET06
 
 #include <fstream>
 #include <iostream>
@@ -146,7 +146,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET07
 
 #include <fstream>
 #include <iostream>
@@ -164,7 +164,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET08
 
 #include <fstream>
 #include <iostream>
@@ -182,7 +182,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET09
 
 #include <fstream>
 #include <iostream>
@@ -200,7 +200,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET10
 
 #include <fstream>
 #include <iostream>
@@ -218,7 +218,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET11
 
 #include <fstream>
 #include <iostream>
@@ -236,7 +236,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET12
 
 #include <fstream>
 #include <iostream>
@@ -258,7 +258,7 @@ int main()
 // Section: Reading and Writing to a File
 // -----------------------------------------------------------------------------
 
-#if 0
+#if SNIPPET13
 
 #include <fstream>
 #include <iostream>
@@ -277,7 +277,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET14
 
 #include <fstream>
 #include <iostream>
@@ -296,14 +296,14 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET15
 
 // > g++ -std=c++17 scratchpad.cpp; echo "not_a_number" > test.txt; ./a.out
 // The answer is: 42
 
 #endif
 
-#if 0
+#if SNIPPET16
 
 #include <fstream>
 #include <iostream>
@@ -345,7 +345,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET17
 
 #include <fstream>
 #include <iostream>
@@ -363,7 +363,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET18
 
 #include <fstream>
 #include <iostream>
@@ -382,7 +382,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET19
 
 #include <fstream>
 #include <iostream>
@@ -411,7 +411,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET20
 
 #include <fstream>
 #include <iostream>
@@ -431,7 +431,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET21
 
 #include <fstream>
 #include <iostream>
@@ -451,7 +451,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET22
 
 #include <fstream>
 #include <iostream>
@@ -471,7 +471,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET23
 
 #include <fstream>
 #include <iostream>
@@ -491,7 +491,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET24
 
 #include <fstream>
 #include <iostream>
@@ -511,7 +511,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET25
 
 #include <fstream>
 #include <iostream>
@@ -530,7 +530,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET26
 
 #include <fstream>
 #include <iostream>
@@ -549,7 +549,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET27
 
 #include <fstream>
 #include <iostream>
@@ -565,7 +565,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET28
 
 #include <fstream>
 #include <iostream>
@@ -583,7 +583,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET29
 
 #include <fstream>
 #include <iostream>
@@ -600,7 +600,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET30
 
 #include <fstream>
 #include <iostream>
@@ -632,7 +632,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET31
 
 #include <fstream>
 #include <iostream>
@@ -650,7 +650,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET32
 
 #include <fstream>
 #include <iostream>
@@ -667,7 +667,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET33
 
 #include <fstream>
 #include <iostream>
@@ -685,7 +685,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET34
 
 #include <string.h>
 
@@ -716,7 +716,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET35
 
 #include <string.h>
 
@@ -751,7 +751,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET36
 
 #include <fstream>
 #include <iostream>
@@ -781,7 +781,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET37
 
 #include <fstream>
 #include <iostream>
@@ -808,7 +808,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET38
 
 #include <fstream>
 #include <iostream>
@@ -824,7 +824,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET39
 
 #include <fstream>
 #include <iostream>
@@ -852,7 +852,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET40
 
 #include <fstream>
 #include <iostream>
@@ -875,7 +875,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET41
 
 #include <fstream>
 #include <iostream>
@@ -899,7 +899,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET42
 
 #include <fstream>
 #include <iostream>
@@ -925,7 +925,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET43
 
 #include <fstream>
 #include <iostream>
@@ -951,7 +951,7 @@ int main()
 // Section: File Utilities
 // -----------------------------------------------------------------------------
 
-#if 0
+#if SNIPPET44
 
 #include <iostream>
 #include <filesystem>
@@ -983,7 +983,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET45
 
 #include <iostream>
 #include <filesystem>
@@ -1003,7 +1003,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET46
 
 #include <iostream>
 #include <filesystem>
@@ -1018,7 +1018,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET47
 
 #include <iostream>
 #include <filesystem>
@@ -1034,7 +1034,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET48
 
 #include <iostream>
 #include <filesystem>
@@ -1051,7 +1051,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET49
 
 #include <iostream>
 #include <filesystem>
@@ -1066,7 +1066,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET50
 
 #include <iostream>
 #include <filesystem>
@@ -1094,7 +1094,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET51
 
 #include <iostream>
 #include <filesystem>
@@ -1122,7 +1122,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET52
 
 #include <iostream>
 #include <filesystem>
@@ -1140,7 +1140,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET53
 
 #include <iostream>
 #include <filesystem>
@@ -1158,7 +1158,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET54
 
 #include <iostream>
 #include <filesystem>
@@ -1179,7 +1179,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET55
 
 #include <iostream>
 #include <filesystem>
@@ -1200,7 +1200,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET56
 
 #include <iostream>
 #include <filesystem>
@@ -1221,7 +1221,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET57
 
 #include <iostream>
 #include <filesystem>
@@ -1242,7 +1242,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET58
 
 #include <iostream>
 #include <filesystem>
@@ -1275,7 +1275,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET59
 
 #include <iostream>
 #include <filesystem>
@@ -1314,7 +1314,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET60
 
 #include <iostream>
 #include <filesystem>
@@ -1335,7 +1335,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET61
 
 #include <iostream>
 #include <filesystem>
@@ -1361,7 +1361,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET62
 
 #include <fstream>
 #include <iostream>
@@ -1388,7 +1388,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET63
 
 #include <fstream>
 #include <iostream>
@@ -1422,7 +1422,7 @@ int main()
 
 #endif
 
-#if 0
+#if SNIPPET64
 
 #include <fstream>
 #include <iostream>
