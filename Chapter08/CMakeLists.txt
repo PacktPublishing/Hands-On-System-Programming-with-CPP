@@ -24,7 +24,7 @@
 # ------------------------------------------------------------------------------
 
 cmake_minimum_required(VERSION 3.6)
-project(chapter8)
+project(chapter08)
 
 include(ExternalProject)
 find_package(Git REQUIRED)

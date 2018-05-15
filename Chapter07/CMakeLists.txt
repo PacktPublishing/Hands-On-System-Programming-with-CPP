@@ -24,7 +24,7 @@
 # ------------------------------------------------------------------------------
 
 cmake_minimum_required(VERSION 3.6)
-project(chapter7)
+project(chapter07)
 
 set(CMAKE_CXX_STANDARD 17)
 
