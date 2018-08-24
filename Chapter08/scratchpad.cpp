@@ -19,19 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-// HEADING 1: Opening a File
-// HEADING 2: Reading and Writing to a File
-// HEADING 3: File Utilities
-// HEADING 4: Logger Example
-// HEADING 5: Tail File Example
-// HEADING 6: C++ vs mmap Benchmark Example
-// SKILL 1: Learn to open a file using C++, including the various permission modifiers
-// SKILL 2: Learn how to read and write to a file using C++’s APIs
-// SKILL 3: Learn what utility facilities C++’s APIs provide including getting a file’s size, random file access, synchronization and error handling.
-// SKILL 4: Learn how to create a simple logger for debugging.
-// SKILL 5: Learn how to tail a file using C++ and the POSIX APIs. This example can be used to read the output of the logger example
-// SKILL 6: Learn how to benchmark the performance difference between C++’s file APIs vs. raw POSIX memory mapping.
-
 // -----------------------------------------------------------------------------
 // Section: Opening a File
 // -----------------------------------------------------------------------------

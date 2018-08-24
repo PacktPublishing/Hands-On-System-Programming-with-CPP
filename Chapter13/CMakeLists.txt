@@ -24,7 +24,7 @@
 # ------------------------------------------------------------------------------
 
 cmake_minimum_required(VERSION 3.6)
-project(chapter10)
+project(chapter13)
 
 include(ExternalProject)
 find_package(Git REQUIRED)
@@ -55,70 +55,42 @@ ExternalProject_Add(
 )
 
 # ------------------------------------------------------------------------------
-# JSON
-# ------------------------------------------------------------------------------
-
-list(APPEND JSON_CMAKE_ARGS
-    -DBUILD_TESTING=OFF
-    -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}
-)
-
-ExternalProject_Add(
-    json
-    GIT_REPOSITORY https://github.com/nlohmann/json.git
-    GIT_SHALLOW 1
-    CMAKE_ARGS ${JSON_CMAKE_ARGS}
-    PREFIX ${CMAKE_BINARY_DIR}/external/json/prefix
-    TMP_DIR ${CMAKE_BINARY_DIR}/external/json/tmp
-    STAMP_DIR ${CMAKE_BINARY_DIR}/external/json/stamp
-    DOWNLOAD_DIR ${CMAKE_BINARY_DIR}/external/json/download
-    SOURCE_DIR ${CMAKE_BINARY_DIR}/external/json/src
-    BINARY_DIR ${CMAKE_BINARY_DIR}/external/json/build
-    UPDATE_DISCONNECTED 1
-)
-
-# ------------------------------------------------------------------------------
 # Executable
 # ------------------------------------------------------------------------------
 
 include_directories(${CMAKE_BINARY_DIR}/include)
 
-add_executable(example1_server example1.cpp)
-target_compile_definitions(example1_server PUBLIC SERVER=1)
-add_dependencies(example1_server gsl json)
+add_executable(example1 example1.cpp)
+add_dependencies(example1 gsl)
+target_link_libraries(example1)
 
-add_executable(example1_client example1.cpp)
-target_compile_definitions(example1_client PUBLIC CLIENT=1)
-add_dependencies(example1_client gsl json)
+# ------------------------------------------------------------------------------
+# Snippets
+# ------------------------------------------------------------------------------
 
-add_executable(example2_server example2.cpp)
-target_compile_definitions(example2_server PUBLIC SERVER=1)
-add_dependencies(example2_server gsl json)
+function(snippet number)
+    add_executable(snippet${number} scratchpad.cpp)
+    target_compile_definitions(snippet${number} PRIVATE SNIPPET${number})
+    target_link_libraries(snippet${number} pthread)
+endfunction(snippet)
 
-add_executable(example2_client example2.cpp)
-target_compile_definitions(example2_client PUBLIC CLIENT=1)
-add_dependencies(example2_client gsl json)
-
-add_executable(example3_server example3.cpp)
-target_compile_definitions(example3_server PUBLIC SERVER=1)
-add_dependencies(example3_server gsl json)
-
-add_executable(example3_client example3.cpp)
-target_compile_definitions(example3_client PUBLIC CLIENT=1)
-add_dependencies(example3_client gsl json)
-
-add_executable(example4_server example4.cpp)
-target_compile_definitions(example4_server PUBLIC SERVER=1)
-add_dependencies(example4_server gsl json)
-
-add_executable(example4_client example4.cpp)
-target_compile_definitions(example4_client PUBLIC CLIENT=1)
-add_dependencies(example4_client gsl json)
-
-add_executable(example5_server example5.cpp)
-target_compile_definitions(example5_server PUBLIC SERVER=1)
-add_dependencies(example5_server gsl json)
-
-add_executable(example5_client example5.cpp)
-target_compile_definitions(example5_client PUBLIC CLIENT=1)
-add_dependencies(example5_client gsl json)
+snippet(01)
+snippet(02)
+snippet(03)
+snippet(03a)
+snippet(04)
+snippet(05)
+snippet(06)
+snippet(07)
+snippet(08)
+snippet(09)
+snippet(10)
+snippet(11)
+snippet(12)
+snippet(13)
+snippet(14)
+snippet(15)
+snippet(16)
+snippet(17)
+snippet(18)
+snippet(19)

@@ -20,7 +20,7 @@
 // SOFTWARE.
 
 #define PORT 22000
-#define MAX_SIZE 0x10
+#define MAX_SIZE 0x1000
 
 #ifdef SERVER
 
