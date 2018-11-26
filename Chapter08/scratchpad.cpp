@@ -19,6 +19,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+// NOTE:
+//
+// To support GCC 7, the filesystem APIs have the experimental/ folder added
+// to the #include directive, and experimental:: was added to all of the
+// namespace. In addition, the relative demo was disabled. With newer compilers
+// that support this namespace, this addition can be removed.
+//
+
 // -----------------------------------------------------------------------------
 // Section: Opening a File
 // -----------------------------------------------------------------------------
@@ -30,8 +38,11 @@
 
 int main()
 {
-    if (auto file = std::fstream("testff.txt")) {
+    if (auto file = std::fstream("test.txt")) {
         std::cout << "success\n";
+    }
+    else {
+        std::cout << "failure\n";
     }
 }
 
@@ -486,15 +497,21 @@ int main()
 int main()
 {
     if (auto file = std::fstream("test.txt")) {
-        std::cout << file.tellg() << '\n';
+        std::string hello, world;
+
+        file >> hello >> world;
+        std::cout << hello << " " << world << '\n';
+
         file.seekg(1);
-        std::cout << file.tellg() << '\n';
+
+        file >> hello >> world;
+        std::cout << hello << " " << world << '\n';
     }
 }
 
 // > g++ -std=c++17 scratchpad.cpp; echo "Hello World" > test.txt; ./a.out
-// 0
-// 1
+// Hello World
+// ello World
 
 #endif
 
@@ -941,20 +958,20 @@ int main()
 #if SNIPPET44
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
     std::cout << std::boolalpha;
-    std::cout << std::filesystem::is_block_file("/dev/sda1") << '\n';
-    std::cout << std::filesystem::is_character_file("/dev/random") << '\n';
-    std::cout << std::filesystem::is_directory("/dev") << '\n';
-    std::cout << std::filesystem::is_empty("/dev") << '\n';
-    std::cout << std::filesystem::is_fifo("scratchpad.cpp") << '\n';
-    std::cout << std::filesystem::is_other("scratchpad.cpp") << '\n';
-    std::cout << std::filesystem::is_regular_file("scratchpad.cpp") << '\n';
-    std::cout << std::filesystem::is_socket("scratchpad.cpp") << '\n';
-    std::cout << std::filesystem::is_symlink("scratchpad.cpp") << '\n';
+    std::cout << std::experimental::filesystem::is_block_file("/dev/sda1") << '\n';
+    std::cout << std::experimental::filesystem::is_character_file("/dev/random") << '\n';
+    std::cout << std::experimental::filesystem::is_directory("/dev") << '\n';
+    std::cout << std::experimental::filesystem::is_empty("/dev") << '\n';
+    std::cout << std::experimental::filesystem::is_fifo("scratchpad.cpp") << '\n';
+    std::cout << std::experimental::filesystem::is_other("scratchpad.cpp") << '\n';
+    std::cout << std::experimental::filesystem::is_regular_file("scratchpad.cpp") << '\n';
+    std::cout << std::experimental::filesystem::is_socket("scratchpad.cpp") << '\n';
+    std::cout << std::experimental::filesystem::is_symlink("scratchpad.cpp") << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out
@@ -973,14 +990,14 @@ int main()
 #if SNIPPET45
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
     std::cout << std::boolalpha;
-    std::cout << std::filesystem::exists("/dev") << '\n';
-    std::cout << std::filesystem::exists("/dev/random") << '\n';
-    std::cout << std::filesystem::exists("scratchpad.cpp") << '\n';
+    std::cout << std::experimental::filesystem::exists("/dev") << '\n';
+    std::cout << std::experimental::filesystem::exists("/dev/random") << '\n';
+    std::cout << std::experimental::filesystem::exists("scratchpad.cpp") << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out
@@ -993,11 +1010,11 @@ int main()
 #if SNIPPET46
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    std::cout << std::filesystem::current_path() << '\n';
+    std::cout << std::experimental::filesystem::current_path() << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out
@@ -1008,12 +1025,12 @@ int main()
 #if SNIPPET47
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
-    std::cout << std::filesystem::relative(path) << '\n';
+    auto path = std::experimental::filesystem::current_path();
+    std::cout << std::experimental::filesystem::relative(path) << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out
@@ -1024,12 +1041,12 @@ int main()
 #if SNIPPET48
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    std::cout << std::filesystem::canonical(".") << '\n';
-    std::cout << std::filesystem::canonical("../chapter_8") << '\n';
+    std::cout << std::experimental::filesystem::canonical(".") << '\n';
+    std::cout << std::experimental::filesystem::canonical("../chapter_8") << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out
@@ -1041,11 +1058,11 @@ int main()
 #if SNIPPET49
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    std::cout << std::filesystem::absolute("../chapter_8") << '\n';
+    std::cout << std::experimental::filesystem::absolute("../chapter_8") << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out
@@ -1056,21 +1073,21 @@ int main()
 #if SNIPPET50
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path1 = std::filesystem::path{"."};
-    auto path2 = std::filesystem::path{"../chapter_8"};
-    auto path3 = std::filesystem::path{"../chapter_8/../chapter_8"};
-    auto path4 = std::filesystem::current_path();
-    auto path5 = std::filesystem::current_path() / "../chapter_8/";
+    auto path1 = std::experimental::filesystem::path{"."};
+    auto path2 = std::experimental::filesystem::path{"../chapter_8"};
+    auto path3 = std::experimental::filesystem::path{"../chapter_8/../chapter_8"};
+    auto path4 = std::experimental::filesystem::current_path();
+    auto path5 = std::experimental::filesystem::current_path() / "../chapter_8/";
 
     std::cout << std::boolalpha;
-    std::cout << std::filesystem::equivalent(path1, path2) << '\n';
-    std::cout << std::filesystem::equivalent(path1, path3) << '\n';
-    std::cout << std::filesystem::equivalent(path1, path4) << '\n';
-    std::cout << std::filesystem::equivalent(path1, path5) << '\n';
+    std::cout << std::experimental::filesystem::equivalent(path1, path2) << '\n';
+    std::cout << std::experimental::filesystem::equivalent(path1, path3) << '\n';
+    std::cout << std::experimental::filesystem::equivalent(path1, path4) << '\n';
+    std::cout << std::experimental::filesystem::equivalent(path1, path5) << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out
@@ -1084,15 +1101,15 @@ int main()
 #if SNIPPET51
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path1 = std::filesystem::path{"."};
-    auto path2 = std::filesystem::path{"../chapter_8"};
-    auto path3 = std::filesystem::path{"../chapter_8/../chapter_8"};
-    auto path4 = std::filesystem::current_path();
-    auto path5 = std::filesystem::current_path() / "../chapter_8/";
+    auto path1 = std::experimental::filesystem::path{"."};
+    auto path2 = std::experimental::filesystem::path{"../chapter_8"};
+    auto path3 = std::experimental::filesystem::path{"../chapter_8/../chapter_8"};
+    auto path4 = std::experimental::filesystem::current_path();
+    auto path5 = std::experimental::filesystem::current_path() / "../chapter_8/";
 
     std::cout << std::boolalpha;
     std::cout << (path1 == path2) << '\n';
@@ -1112,11 +1129,11 @@ int main()
 #if SNIPPET52
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
+    auto path = std::experimental::filesystem::current_path();
     path /= "scratchpad.cpp";
 
     std::cout << path << '\n';
@@ -1130,11 +1147,11 @@ int main()
 #if SNIPPET53
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
+    auto path = std::experimental::filesystem::current_path();
     path += "/scratchpad.cpp";
 
     std::cout << path << '\n';
@@ -1148,11 +1165,11 @@ int main()
 #if SNIPPET54
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
+    auto path = std::experimental::filesystem::current_path();
     path /= "scratchpad.cpp";
 
     std::cout << path << '\n';
@@ -1169,11 +1186,11 @@ int main()
 #if SNIPPET55
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
+    auto path = std::experimental::filesystem::current_path();
     path /= "scratchpad.cpp";
 
     std::cout << path << '\n';
@@ -1190,11 +1207,11 @@ int main()
 #if SNIPPET56
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
+    auto path = std::experimental::filesystem::current_path();
     path /= "scratchpad.cpp";
 
     std::cout << path << '\n';
@@ -1211,11 +1228,11 @@ int main()
 #if SNIPPET57
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
+    auto path = std::experimental::filesystem::current_path();
     path /= "scratchpad.cpp";
 
     std::cout << path << '\n';
@@ -1232,11 +1249,11 @@ int main()
 #if SNIPPET58
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
+    auto path = std::experimental::filesystem::current_path();
     path /= "scratchpad.cpp";
 
     std::cout << std::boolalpha;
@@ -1265,11 +1282,11 @@ int main()
 #if SNIPPET59
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
+    auto path = std::experimental::filesystem::current_path();
     path /= "scratchpad.cpp";
 
     std::cout << std::boolalpha;
@@ -1304,16 +1321,16 @@ int main()
 #if SNIPPET60
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
+    auto path = std::experimental::filesystem::current_path();
     path /= "test";
 
     std::cout << std::boolalpha;
-    std::cout << std::filesystem::create_directory(path) << '\n';
-    std::cout << std::filesystem::remove(path) << '\n';
+    std::cout << std::experimental::filesystem::create_directory(path) << '\n';
+    std::cout << std::experimental::filesystem::remove(path) << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out
@@ -1325,20 +1342,20 @@ int main()
 #if SNIPPET61
 
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path1 = std::filesystem::current_path();
-    auto path2 = std::filesystem::current_path();
+    auto path1 = std::experimental::filesystem::current_path();
+    auto path2 = std::experimental::filesystem::current_path();
     path1 /= "test1";
     path2 /= "test2";
 
     std::cout << std::boolalpha;
-    std::cout << std::filesystem::create_directory(path1) << '\n';
-    std::filesystem::rename(path1, path2);
-    std::cout << std::filesystem::remove(path1) << '\n';
-    std::cout << std::filesystem::remove(path2) << '\n';
+    std::cout << std::experimental::filesystem::create_directory(path1) << '\n';
+    std::experimental::filesystem::rename(path1, path2);
+    std::cout << std::experimental::filesystem::remove(path1) << '\n';
+    std::cout << std::experimental::filesystem::remove(path2) << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out
@@ -1352,21 +1369,21 @@ int main()
 
 #include <fstream>
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
+    auto path = std::experimental::filesystem::current_path();
     path /= "test";
 
     std::cout << std::boolalpha;
-    std::cout << std::filesystem::create_directory(path) << '\n';
+    std::cout << std::experimental::filesystem::create_directory(path) << '\n';
 
     std::fstream(path / "test1.txt", std::ios::app);
     std::fstream(path / "test2.txt", std::ios::app);
     std::fstream(path / "test3.txt", std::ios::app);
 
-    std::cout << std::filesystem::remove_all(path) << '\n';
+    std::cout << std::experimental::filesystem::remove_all(path) << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out
@@ -1379,25 +1396,25 @@ int main()
 
 #include <fstream>
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    auto path = std::filesystem::current_path();
+    auto path = std::experimental::filesystem::current_path();
     path /= "test";
 
     std::cout << std::boolalpha;
-    std::cout << std::filesystem::create_directory(path) << '\n';
+    std::cout << std::experimental::filesystem::create_directory(path) << '\n';
 
     std::fstream(path / "test1.txt", std::ios::app);
     std::fstream(path / "test2.txt", std::ios::app);
     std::fstream(path / "test3.txt", std::ios::app);
 
-    for(const auto &p: std::filesystem::directory_iterator(path)) {
+    for(const auto &p: std::experimental::filesystem::directory_iterator(path)) {
         std::cout << p << '\n';
     }
 
-    std::cout << std::filesystem::remove_all(path) << '\n';
+    std::cout << std::experimental::filesystem::remove_all(path) << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out
@@ -1413,11 +1430,11 @@ int main()
 
 #include <fstream>
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 
 int main()
 {
-    std::cout << std::filesystem::temp_directory_path() << '\n';
+    std::cout << std::experimental::filesystem::temp_directory_path() << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp -lstdc++fs; ./a.out

@@ -19,10 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-// -----------------------------------------------------------------------------
-// Section: Stream Based IO
-// -----------------------------------------------------------------------------
-
 #if SNIPPET01
 
 #include <stdio.h>

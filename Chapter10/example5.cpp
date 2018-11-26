@@ -25,6 +25,7 @@
 #ifdef SERVER
 
 #include <iostream>
+#include <stdexcept>
 
 #include <unistd.h>
 #include <string.h>
@@ -39,7 +40,7 @@ class myserver
 {
 public:
 
-    myserver(uint16_t port)
+    explicit myserver(uint16_t port)
     {
         if (m_fd = ::socket(AF_INET, SOCK_STREAM, 0); m_fd == -1) {
             throw std::runtime_error(strerror(errno));
@@ -49,7 +50,7 @@ public:
         m_addr.sin_port = htons(port);
         m_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
-        if (bind() == -1) {
+        if (this->bind() == -1) {
             throw std::runtime_error(strerror(errno));
         }
     }
@@ -117,6 +118,8 @@ protected_main(int argc, char** argv)
 
     myserver server{PORT};
     server.recv_packet();
+
+    return EXIT_SUCCESS;
 }
 
 int
@@ -142,6 +145,7 @@ main(int argc, char** argv)
 
 #include <string>
 #include <iostream>
+#include <stdexcept>
 
 #include <unistd.h>
 #include <string.h>
@@ -155,7 +159,7 @@ using json = nlohmann::json;
 class myclient
 {
 public:
-    myclient(uint16_t port)
+    explicit myclient(uint16_t port)
     {
         if (m_fd = ::socket(AF_INET, SOCK_STREAM, 0); m_fd == -1) {
             throw std::runtime_error(strerror(errno));
@@ -220,6 +224,8 @@ protected_main(int argc, char** argv)
 
     myclient client{PORT};
     client.send_packet();
+
+    return EXIT_SUCCESS;
 }
 
 int

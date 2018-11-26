@@ -24,10 +24,11 @@
 #include <chrono>
 #include <iostream>
 
-#include <gsl/gsl>
-using namespace gsl;
-
 jmp_buf jb;
+
+constexpr const auto bad = 0x10000000;
+constexpr const auto num_iterations = 100000;
+
 
 template<typename FUNC>
 auto benchmark(FUNC func) {
@@ -40,7 +41,7 @@ auto benchmark(FUNC func) {
 
 int myfunc1(int val)
 {
-    if (val >= 0x10000000) {
+    if (val >= bad) {
         return -1;
     }
 
@@ -55,7 +56,7 @@ int myfunc1(int val)
 
 void myfunc2(int val)
 {
-    if (val >= 0x10000000) {
+    if (val >= bad) {
         std::longjmp(jb, -1);
     }
 
@@ -66,7 +67,7 @@ void myfunc2(int val)
 
 void myfunc3(int val)
 {
-    if (val >= 0x10000000) {
+    if (val >= bad) {
         throw -1;
     }
 
@@ -75,12 +76,8 @@ void myfunc3(int val)
     }
 }
 
-int
-protected_main(int argc, char** argv)
+void test_func1()
 {
-    (void) argc;
-    (void) argv;
-
     if (auto ret = myfunc1(0); ret == 0) {
         std::cout << "myfunc1: success\n";
     }
@@ -88,61 +85,78 @@ protected_main(int argc, char** argv)
         std::cout << "myfunc1: failure\n";
     }
 
-    if (auto ret = myfunc1(0x10000000); ret == 0) {
+    if (auto ret = myfunc1(bad); ret == 0) {
         std::cout << "myfunc1: success\n";
     }
     else {
         std::cout << "myfunc1: failure\n";
     }
 
+    uint64_t total = 0;
+    for (auto i = 0; i < num_iterations; i++) {
+        total += benchmark([&] {
+            myfunc1(0);
+        });
+    }
+
+    std::cout << "time1: " << total << '\n';
+}
+
+void test_func2()
+{
     if (setjmp(jb) == -1) {
         std::cout << "myfunc2: failure\n";
-        goto next;
+
+        uint64_t total = 0;
+        for (auto i = 0; i < num_iterations; i++) {
+            total += benchmark([&] {
+                myfunc2(0);
+            });
+        }
+
+        std::cout << "time2: " << total << '\n';
+        return;
     }
 
     myfunc2(0);
     std::cout << "myfunc2: success\n";
 
-    myfunc2(0x10000000);
+    myfunc2(bad);
     std::cout << "myfunc2: success\n";
+}
 
-next:
-
+void test_func3()
+{
     try {
         myfunc3(0);
         std::cout << "myfunc3: success\n";
 
-        myfunc3(0x10000000);
+        myfunc3(bad);
         std::cout << "myfunc3: success\n";
     }
     catch(...) {
         std::cout << "myfunc3: failure\n";
     }
 
-    uint64_t total1 = 0;
-    for (auto i = 0; i < 1000000; i++) {
-        total1 += benchmark([&] {
-            myfunc1(0);
-        });
-    }
-
-    uint64_t total2 = 0;
-    for (auto i = 0; i < 1000000; i++) {
-        total2 += benchmark([&] {
-            myfunc2(0);
-        });
-    }
-
-    uint64_t total3 = 0;
-    for (auto i = 0; i < 1000000; i++) {
-        total3 += benchmark([&] {
+    uint64_t total = 0;
+    for (auto i = 0; i < num_iterations; i++) {
+        total += benchmark([&] {
             myfunc3(0);
         });
     }
 
-    std::cout << "time1: " << total1 << '\n';
-    std::cout << "time2: " << total2 << '\n';
-    std::cout << "time3: " << total3 << '\n';
+    std::cout << "time3: " << total << '\n';
+}
+
+int
+protected_main(int argc, char** argv)
+{
+    (void) argc;
+    (void) argv;
+
+    test_func1();
+    test_func2();
+    test_func3();
 
     return EXIT_SUCCESS;
 }

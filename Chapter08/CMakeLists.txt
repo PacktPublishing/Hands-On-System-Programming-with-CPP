@@ -29,7 +29,7 @@ project(chapter08)
 include(ExternalProject)
 find_package(Git REQUIRED)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS "-std=c++17")
 
 # ------------------------------------------------------------------------------
 # Guideline Support Library
@@ -125,7 +125,7 @@ snippet(43)
 snippet(44)
 snippet(45)
 snippet(46)
-snippet(47)
+# snippet(47)
 snippet(48)
 snippet(49)
 snippet(50)

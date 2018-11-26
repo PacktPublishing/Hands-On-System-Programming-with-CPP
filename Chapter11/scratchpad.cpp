@@ -25,7 +25,7 @@
 
 #if SNIPPET01
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 int main()
@@ -41,7 +41,7 @@ int main()
 
 #if SNIPPET02
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 int main()
@@ -58,7 +58,7 @@ int main()
 
 #if SNIPPET03
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 int main()
@@ -74,7 +74,7 @@ int main()
 
 #if SNIPPET05
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 int main()
@@ -90,7 +90,7 @@ int main()
 
 #if SNIPPET06
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 int main()
@@ -106,7 +106,7 @@ int main()
 
 #if SNIPPET07
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 int main()
@@ -126,7 +126,7 @@ int main()
 
 #if SNIPPET08
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 int main()
@@ -146,7 +146,7 @@ int main()
 
 #if SNIPPET09
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 int main()
@@ -166,7 +166,7 @@ int main()
 
 #if SNIPPET10
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 #include <unistd.h>
@@ -188,7 +188,7 @@ int main()
 
 #if SNIPPET11
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 int main()
@@ -207,7 +207,7 @@ int main()
 
 #if SNIPPET12
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 int main()
@@ -222,7 +222,7 @@ int main()
 
 #if SNIPPET13
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 #include <unistd.h>
@@ -233,17 +233,18 @@ int main()
     sleep(2);
     auto c2 = clock();
 
-    std::cout << "clock: " << (1000.0 * (c2 - c1)) / CLOCKS_PER_SEC << '\n';
+    std::cout << "clock: " <<
+        static_cast<double>(c2 - c1) / CLOCKS_PER_SEC << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp; ./a.out
-// clock: 0.038
+// clock: 3.2e-05
 
 #endif
 
 #if SNIPPET04
 
-#include <time.h>
+#include <ctime>
 #include <iostream>
 
 #include <unistd.h>
@@ -257,11 +258,12 @@ int main()
 
     auto c2 = clock();
 
-    std::cout << "clock: " << (c2 - c1) / CLOCKS_PER_SEC << '\n';
+    std::cout << "clock: " <<
+        static_cast<double>(c2 - c1) / CLOCKS_PER_SEC << '\n';
 }
 
 // > g++ -std=c++17 scratchpad.cpp; ./a.out
-// clock: 2
+// clock: 2.05336
 
 #endif
 
@@ -435,7 +437,7 @@ int main()
 
 #endif
 
-#if SNIPPET21
+#if SNIPPET20
 
 #include <chrono>
 #include <iostream>
@@ -466,7 +468,7 @@ int main()
 
 #endif
 
-#if SNIPPET22
+#if SNIPPET21
 
 #include <chrono>
 #include <iostream>
@@ -491,7 +493,7 @@ int main()
 
 #endif
 
-#if SNIPPET23
+#if SNIPPET22
 
 #include <chrono>
 #include <iostream>
@@ -523,7 +525,7 @@ int main()
 
 #endif
 
-#if SNIPPET24
+#if SNIPPET23
 
 #include <chrono>
 #include <iostream>

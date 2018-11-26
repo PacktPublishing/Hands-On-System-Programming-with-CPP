@@ -23,7 +23,7 @@
 // Section: Stream Based IO
 // -----------------------------------------------------------------------------
 
-#if SNIPPET00
+#if SNIPPET01
 
 #include <iostream>
 
@@ -38,7 +38,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET00a
+#if SNIPPET02
 
 #include <iostream>
 
@@ -57,7 +57,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET00b
+#if SNIPPET03
 
 #include <iostream>
 
@@ -72,7 +72,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET01
+#if SNIPPET04
 
 #include <iostream>
 
@@ -108,7 +108,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET01a
+#if SNIPPET05
 
 #include <iostream>
 
@@ -144,7 +144,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET02
+#if SNIPPET06
 
 #include <iostream>
 
@@ -180,7 +180,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET02a
+#if SNIPPET07
 
 #include <iostream>
 
@@ -199,7 +199,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET03
+#if SNIPPET08
 
 #include <iostream>
 
@@ -235,7 +235,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET04
+#if SNIPPET09
 
 #include <iostream>
 
@@ -271,7 +271,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET05
+#if SNIPPET10
 
 #include <iostream>
 
@@ -293,7 +293,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET06
+#if SNIPPET11
 
 #include <iostream>
 
@@ -315,7 +315,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET07
+#if SNIPPET12
 
 #include <iostream>
 
@@ -337,7 +337,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET08
+#if SNIPPET13
 
 #include <iostream>
 
@@ -359,7 +359,7 @@ int main(void)
 
 #endif
 
-#if SNIPPET09
+#if SNIPPET14
 
 #include <typeinfo>
 #include <iostream>
@@ -391,6 +391,9 @@ template<typename T1, typename T2>
 void
 are_equal()
 {
+    #define red "\033[1;31m"
+    #define reset "\033[0m"
+
     std::cout << type_name<T1>() << " vs "
               << type_name<T2>() << '\n';
 
@@ -398,22 +401,22 @@ are_equal()
         std::cout << "  - size: both == " << sizeof(T1) << '\n';
     }
     else {
-        std::cout << "\033[1;31m  - size: "
+        std::cout << red "  - size: "
                   << sizeof(T1)
                   << " != "
                   << sizeof(T2)
-                  << "\033[0m\n";
+                  << reset "\n";
     }
 
     if (type_name<T1>() == type_name<T2>()) {
         std::cout << "  - name: both == " << type_name<T1>() << '\n';
     }
     else {
-        std::cout << "\033[1;31m  - name: "
+        std::cout << red "  - name: "
                   << type_name<T1>()
                   << " != "
                   << type_name<T2>()
-                  << "\033[0m\n";
+                  << reset "\n";
     }
 }
 
@@ -475,7 +478,7 @@ int main()
 
 #endif
 
-#if SNIPPET10
+#if SNIPPET15
 
 #include <iostream>
 
@@ -494,7 +497,7 @@ int main()
 
 #endif
 
-#if SNIPPET11
+#if SNIPPET16
 
 #include <iostream>
 
@@ -513,7 +516,7 @@ int main()
 
 #endif
 
-#if SNIPPET12
+#if SNIPPET17
 
 #include <iostream>
 
@@ -532,7 +535,7 @@ int main()
 
 #endif
 
-#if SNIPPET12a
+#if SNIPPET18
 
 #include <iostream>
 
@@ -548,7 +551,7 @@ int main()
 
 #endif
 
-#if SNIPPET13
+#if SNIPPET19
 
 #include <iostream>
 
@@ -567,7 +570,7 @@ int main()
 
 #endif
 
-#if SNIPPET14
+#if SNIPPET20
 
 #include <iostream>
 
@@ -586,7 +589,7 @@ int main()
 
 #endif
 
-#if SNIPPET15
+#if SNIPPET21
 
 #include <iostream>
 
@@ -607,7 +610,7 @@ int main()
 
 #endif
 
-#if SNIPPET16
+#if SNIPPET22
 
 #include <iostream>
 
@@ -628,7 +631,7 @@ int main()
 
 #endif
 
-#if SNIPPET17
+#if SNIPPET23
 
 #include <iostream>
 
@@ -650,7 +653,7 @@ int main()
 
 #endif
 
-#if SNIPPET18
+#if SNIPPET24
 
 #include <iostream>
 
@@ -674,7 +677,7 @@ int main()
 
 #endif
 
-#if SNIPPET19
+#if SNIPPET25
 
 #include <iostream>
 
@@ -698,7 +701,7 @@ int main()
 
 #endif
 
-#if SNIPPET20
+#if SNIPPET26
 
 #include <iostream>
 
@@ -719,7 +722,7 @@ int main()
 
 #endif
 
-#if SNIPPET21
+#if SNIPPET27
 
 #include <iostream>
 

@@ -23,7 +23,6 @@
 #include <iostream>
 
 #include <gsl/gsl>
-using namespace gsl;
 
 template<typename FUNC>
 auto benchmark(FUNC func) {
@@ -39,14 +38,14 @@ protected_main(int argc, char **argv)
 {
     using namespace std::chrono;
 
-    auto args = make_span(argv, argc);
+    auto args = gsl::make_span(argv, argc);
 
     if (args.size() != 2) {
         std::cerr << "wrong number of arguments\n";
         ::exit(1);
     }
 
-    cstring_span<> arg = ensure_z(args.at(1));
+    gsl::cstring_span<> arg = gsl::ensure_z(args.at(1));
 
     auto d = benchmark([&arg]{
         for (uint64_t i = 0; i < std::stoi(arg.data()); i++);

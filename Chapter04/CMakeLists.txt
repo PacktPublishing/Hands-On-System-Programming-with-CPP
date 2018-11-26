@@ -24,7 +24,7 @@
 # ------------------------------------------------------------------------------
 
 cmake_minimum_required(VERSION 3.6)
-project(chapter13)
+project(chapter04)
 
 include(ExternalProject)
 find_package(Git REQUIRED)
@@ -51,27 +51,18 @@ ExternalProject_Add(
     DOWNLOAD_DIR ${CMAKE_BINARY_DIR}/external/gsl/download
     SOURCE_DIR ${CMAKE_BINARY_DIR}/external/gsl/src
     BINARY_DIR ${CMAKE_BINARY_DIR}/external/gsl/build
-    UPDATE_DISCONNECTED 1
 )
-
-# ------------------------------------------------------------------------------
-# Executable
-# ------------------------------------------------------------------------------
-
-include_directories(${CMAKE_BINARY_DIR}/include)
-
-add_executable(example1 example1.cpp)
-add_dependencies(example1 gsl)
-target_link_libraries(example1)
 
 # ------------------------------------------------------------------------------
 # Snippets
 # ------------------------------------------------------------------------------
 
+include_directories(${CMAKE_BINARY_DIR}/include)
+
 function(snippet number)
     add_executable(snippet${number} scratchpad.cpp)
     target_compile_definitions(snippet${number} PRIVATE SNIPPET${number})
-    target_link_libraries(snippet${number} pthread)
+    add_dependencies(snippet${number} gsl)
 endfunction(snippet)
 
 snippet(01)
@@ -95,3 +86,18 @@ snippet(18)
 snippet(19)
 snippet(20)
 snippet(21)
+snippet(22)
+snippet(23)
+snippet(24)
+snippet(25)
+snippet(26)
+snippet(27)
+snippet(28)
+snippet(29)
+snippet(30)
+snippet(31)
+snippet(32)
+snippet(33)
+snippet(34)
+snippet(35)
+snippet(36)

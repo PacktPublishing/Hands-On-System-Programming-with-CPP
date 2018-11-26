@@ -25,7 +25,7 @@
 
 #if SNIPPET01
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 int myfunc(int val)
@@ -38,7 +38,7 @@ int myfunc(int val)
     return 0;
 }
 
-main()
+int main()
 {
     if (myfunc(1) == 0) {
         std::cout << "success\n";
@@ -63,7 +63,7 @@ main()
 
 #if SNIPPET02
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 int myfunc(int val)
@@ -76,7 +76,7 @@ int myfunc(int val)
     return 42;
 }
 
-main()
+int main()
 {
     if (auto handle = myfunc(1); handle != 0) {
         std::cout << "success: " << handle << '\n';
@@ -101,7 +101,7 @@ main()
 
 #if SNIPPET03
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 std::pair<int, bool>
@@ -115,7 +115,7 @@ myfunc(int val)
     return {42, true};
 }
 
-main()
+int main()
 {
     if (auto [handle, success] = myfunc(1); success) {
         std::cout << "success: " << handle << '\n';
@@ -138,9 +138,9 @@ main()
 
 #endif
 
-#if SNIPPET03a
+#if SNIPPET04
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 int myfunc(int val, int &error)
@@ -153,7 +153,7 @@ int myfunc(int val, int &error)
     return 42;
 }
 
-main()
+int main()
 {
     int error = 0;
 
@@ -178,9 +178,9 @@ main()
 
 #endif
 
-#if SNIPPET04
+#if SNIPPET05
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 int myfunc(int val)
@@ -219,36 +219,36 @@ int nested2(int val)
     return 0;
 }
 
-main()
+int main()
 {
     if (nested2(1) == 0) {
-        std::cout << "main success\n";
+        std::cout << "nested2(1) complete\n";
     }
     else {
-        std::cout << "main failure: " << strerror(errno) << '\n';
+        std::cout << "nested2(1) failure: " << strerror(errno) << '\n';
     }
 
     if (nested2(42) == 0) {
-        std::cout << "main success\n";
+        std::cout << "nested2(42) complete\n";
     }
     else {
-        std::cout << "main failure: " << strerror(errno) << '\n';
+        std::cout << "nested2(42) failure: " << strerror(errno) << '\n';
     }
 }
 
 // > g++ -std=c++17 scratchpad.cpp; ./a.out
 // nested1 success
 // nested2 success
-// main success
+// nested2(1) complete
 // nested1 failure: Invalid argument
 // nested2 failure: Invalid argument
-// main failure: Invalid argument
+// nested2(42) failure: Invalid argument
 
 #endif
 
-#if SNIPPET05
+#if SNIPPET06
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 class myclass
@@ -272,7 +272,7 @@ int myfunc(int val)
     return 0;
 }
 
-main()
+int main()
 {
     if (myfunc(1) == 0) {
         std::cout << "success\n";
@@ -301,9 +301,9 @@ main()
 // Section: Set Jump Exceptions
 // -----------------------------------------------------------------------------
 
-#if SNIPPET06
+#if SNIPPET07
 
-#include <string.h>
+#include <cstring>
 #include <csetjmp>
 
 #include <iostream>
@@ -318,7 +318,7 @@ void myfunc(int val)
     }
 }
 
-main()
+int main()
 {
     if (setjmp(jb) == -1) {
         std::cout << "failure: " << strerror(errno) << '\n';
@@ -338,9 +338,9 @@ main()
 
 #endif
 
-#if SNIPPET07
+#if SNIPPET08
 
-#include <string.h>
+#include <cstring>
 #include <csetjmp>
 
 #include <iostream>
@@ -357,7 +357,7 @@ int myfunc(int val)
     return 42;
 }
 
-main()
+int main()
 {
     if (setjmp(jb) == -1) {
         std::cout << "failure: " << strerror(errno) << '\n';
@@ -377,9 +377,9 @@ main()
 
 #endif
 
-#if SNIPPET08
+#if SNIPPET09
 
-#include <string.h>
+#include <cstring>
 #include <csetjmp>
 
 #include <iostream>
@@ -394,19 +394,19 @@ void myfunc(int val)
     }
 }
 
-int nested1(int val)
+void nested1(int val)
 {
     myfunc(val);
     std::cout << "nested1 success\n";
 }
 
-int nested2(int val)
+void nested2(int val)
 {
     nested1(val);
     std::cout << "nested2 success\n";
 }
 
-main()
+int main()
 {
     if (setjmp(jb) == -1) {
         std::cout << "failure: " << strerror(errno) << '\n';
@@ -414,23 +414,23 @@ main()
     }
 
     nested2(1);
-    std::cout << "main success\n";
+    std::cout << "nested2(1) complete\n";
 
     nested2(42);
-    std::cout << "main success\n";
+    std::cout << "nested2(42) complete\n";
 }
 
 // > g++ -std=c++17 scratchpad.cpp; ./a.out
 // nested1 success
 // nested2 success
-// main success
+// nested2(1) complete
 // failure: Invalid argument
 
 #endif
 
-#if SNIPPET09
+#if SNIPPET10
 
-#include <string.h>
+#include <cstring>
 #include <csetjmp>
 
 #include <iostream>
@@ -442,7 +442,7 @@ void myfunc(int val, jmp_buf &jb)
     }
 }
 
-main()
+int main()
 {
     jmp_buf jb;
 
@@ -464,9 +464,9 @@ main()
 
 #endif
 
-#if SNIPPET10
+#if SNIPPET11
 
-#include <string.h>
+#include <cstring>
 #include <csetjmp>
 
 #include <iostream>
@@ -492,7 +492,7 @@ void myfunc(int val)
     }
 }
 
-main()
+int main()
 {
     if (setjmp(jb) == -1) {
         std::cout << "failure: " << strerror(errno) << '\n';
@@ -517,9 +517,9 @@ main()
 // Section: Exception Support in C++
 // -----------------------------------------------------------------------------
 
-#if SNIPPET11
+#if SNIPPET12
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 void myfunc(int val)
@@ -529,7 +529,7 @@ void myfunc(int val)
     }
 }
 
-main()
+int main()
 {
     try {
         myfunc(1);
@@ -549,9 +549,9 @@ main()
 
 #endif
 
-#if SNIPPET12
+#if SNIPPET13
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 int myfunc(int val)
@@ -563,7 +563,7 @@ int myfunc(int val)
     return 42;
 }
 
-main()
+int main()
 {
     try {
         auto handle1 = myfunc(1);
@@ -583,9 +583,9 @@ main()
 
 #endif
 
-#if SNIPPET13
+#if SNIPPET14
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 void myfunc(int val)
@@ -607,14 +607,14 @@ int nested2(int val)
     std::cout << "nested2 success\n";
 }
 
-main()
+int main()
 {
     try {
         nested2(1);
-        std::cout << "main success\n";
+        std::cout << "nested2(1) complete\n";
 
         nested2(42);
-        std::cout << "main success\n";
+        std::cout << "nested2(42) complete\n";
     }
     catch(int ret) {
         std::cout << "failure: " << strerror(ret) << '\n';
@@ -624,14 +624,14 @@ main()
 // > g++ -std=c++17 scratchpad.cpp; ./a.out
 // nested1 success
 // nested2 success
-// main success
+// nested2(1) complete
 // failure: Invalid argument
 
 #endif
 
-#if SNIPPET14
+#if SNIPPET15
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 class myclass
@@ -652,7 +652,7 @@ void myfunc(int val)
     }
 }
 
-main()
+int main()
 {
     try {
         myfunc(1);
@@ -674,9 +674,9 @@ main()
 
 #endif
 
-#if SNIPPET15
+#if SNIPPET16
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 void myfunc(int val)
@@ -686,7 +686,7 @@ void myfunc(int val)
     }
 }
 
-main()
+int main()
 {
     try {
         myfunc(1);
@@ -695,7 +695,7 @@ main()
         myfunc(42);
         std::cout << "success\n";
     }
-    catch(std::exception &e) {
+    catch(const std::exception &e) {
         std::cout << "failure: " << e.what() << '\n';
     }
 }
@@ -706,9 +706,9 @@ main()
 
 #endif
 
-#if SNIPPET16
+#if SNIPPET17
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 void myfunc(int val)
@@ -718,7 +718,7 @@ void myfunc(int val)
     }
 }
 
-main()
+int main()
 {
     try {
         myfunc(1);
@@ -738,9 +738,48 @@ main()
 
 #endif
 
-#if SNIPPET17
+#if SNIPPET18
 
-#include <string.h>
+#include <cstring>
+#include <iostream>
+#include <stdexcept>
+
+void myfunc1(int val)
+{
+    if (val == 42) {
+        throw std::runtime_error("runtime_error");
+    }
+}
+
+void myfunc2(int val)
+{
+    try {
+        myfunc1(val);
+    }
+    catch(...) {
+        auto e = std::current_exception();
+        std::rethrow_exception(e);
+    }
+}
+
+int main()
+{
+    try {
+        myfunc2(42);
+    }
+    catch(const std::exception& e) {
+        std::cout << "caught: " << e.what() << '\n';
+    }
+}
+
+// > g++ -std=c++17 scratchpad.cpp; ./a.out
+// caught: runtime_error
+
+#endif
+
+#if SNIPPET19
+
+#include <cstring>
 #include <iostream>
 
 class myexception : public std::exception
@@ -759,7 +798,7 @@ public:
     	return "error";
     }
 
-    int error()
+    int error() const noexcept
     {
         return m_error;
     }
@@ -772,7 +811,7 @@ void myfunc(int val)
     }
 }
 
-main()
+int main()
 {
     try {
         myfunc(1);
@@ -781,7 +820,7 @@ main()
         myfunc(42);
         std::cout << "success\n";
     }
-    catch(myexception &e) {
+    catch(const myexception &e) {
         std::cout << "failure: " << std::to_string(e.error()) << '\n';
     }
 }
@@ -792,9 +831,9 @@ main()
 
 #endif
 
-#if SNIPPET18
+#if SNIPPET20
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 class myexception : public std::runtime_error
@@ -812,7 +851,7 @@ void myfunc(int val)
     }
 }
 
-main()
+int main()
 {
     try {
         myfunc(1);
@@ -821,7 +860,7 @@ main()
         myfunc(42);
         std::cout << "success\n";
     }
-    catch(std::exception &e) {
+    catch(const std::exception &e) {
         std::cout << "failure: " << e.what() << '\n';
     }
 }
@@ -832,9 +871,9 @@ main()
 
 #endif
 
-#if SNIPPET19
+#if SNIPPET21
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 class myclass
@@ -856,7 +895,7 @@ void myfunc(int val)
     }
 }
 
-main()
+int main()
 {
     try {
         myfunc(1);
@@ -875,5 +914,26 @@ main()
 // success
 // uncaught_exceptions: 1
 // failure: Invalid argument
+
+#endif
+
+#if SNIPPET22
+
+template<typename T>
+class mylinked_list
+{
+    struct node
+    {
+        T data;
+        node *next;
+    };
+
+    node m_head;
+};
+
+int main()
+{
+    mylinked_list<int> l;
+}
 
 #endif

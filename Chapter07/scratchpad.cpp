@@ -1170,16 +1170,16 @@ int main()
 {
     auto ptr = std::make_shared<int>();
     if (ptr) {
-        std::cout << ptr.get() << '\n';
+        std::cout << "before: " << ptr.get() << '\n';
     }
     ptr.reset();
     if (ptr) {
-        std::cout << ptr.get() << '\n';
+        std::cout << "after: "<< ptr.get() << '\n';
     }
 }
 
 // > g++ -std=c++17 scratchpad.cpp; ./a.out
-// 0x562b46bc1e80
+// before: 0x55ac226b5e80
 
 #endif
 

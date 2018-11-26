@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include <list>
+#include <vector>
 #include <iostream>
 
 #define CATCH_CONFIG_MAIN
@@ -28,7 +30,7 @@
 // Allocator Definition
 // -----------------------------------------------------------------------------
 
-template<typename T>
+template<typename T, std::size_t Alignment = 0x40>
 class myallocator
 {
 public:
@@ -36,35 +38,36 @@ public:
     using value_type = T;
     using pointer = T *;
     using size_type = std::size_t;
+    using is_always_equal = std::true_type;
+
+    template<typename U> struct rebind {
+        using other = myallocator<U, Alignment>;
+    };
 
 public:
 
-    myallocator() = default;
+    myallocator()
+    { }
 
     template <typename U>
-    myallocator(const myallocator<U> &other) noexcept
+    myallocator(const myallocator<U, Alignment> &other) noexcept
     { (void) other; }
 
     pointer allocate(size_type n)
     {
-        if (auto ptr = static_cast<pointer>(malloc(sizeof(T) * n))) {
-            return ptr;
+        if (auto ptr = aligned_alloc(Alignment, sizeof(T) * n)) {
+            return static_cast<pointer>(ptr);
         }
 
         throw std::bad_alloc();
     }
 
     void deallocate(pointer p, size_type n)
-    { (void) n; return free(p); }
+    {
+        (void) n;
+        free(p);
+    }
 };
-
-template <typename T1, typename T2>
-bool operator==(const myallocator<T1> &, const myallocator<T2> &)
-{ return true; }
-
-template <typename T1, typename T2>
-bool operator!=(const myallocator<T1> &, const myallocator<T2> &)
-{ return false; }
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -72,9 +75,32 @@ bool operator!=(const myallocator<T1> &, const myallocator<T2> &)
 
 TEST_CASE("allocate single object")
 {
-    myallocator<int> myalloc1;
-    myallocator<int> myalloc2;
+    myallocator<int> myalloc;
 
-    auto ptr = myalloc1.allocate(1);
-    myalloc2.deallocate(ptr, 1);
+    auto ptr = myalloc.allocate(1);
+    std::cout << ptr << '\n';
+    myalloc.deallocate(ptr, 1);
 }
+
+// 0x561d512b6500
+
+TEST_CASE("allocate multiple objects")
+{
+    myallocator<int> myalloc;
+
+    auto ptr = myalloc.allocate(42);
+    std::cout << ptr << '\n';
+    myalloc.deallocate(ptr, 42);
+}
+
+// 0x55dcdcb41500
+
+TEST_CASE("std::vector single element")
+{
+    std::vector<int, myallocator<int>> myvector;
+    myvector.emplace_back(42);
+
+    std::cout << myvector.data() << '\n';
+}
+
+// 0x55f875a0f500

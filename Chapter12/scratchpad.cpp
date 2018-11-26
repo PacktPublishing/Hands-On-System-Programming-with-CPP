@@ -186,6 +186,7 @@ main()
 
 #if SNIPPET06
 
+#include <array>
 #include <iostream>
 #include <pthread.h>
 
@@ -201,32 +202,15 @@ main()
     while (true) {
         count = 0;
         for (auto i = 0; i < 1000; i++) {
-            pthread_t thread1;
-            pthread_t thread2;
-            pthread_t thread3;
-            pthread_t thread4;
-            pthread_t thread5;
-            pthread_t thread6;
-            pthread_t thread7;
-            pthread_t thread8;
+            std::array<pthread_t, 8> threads;
 
-            pthread_create(&thread1, nullptr, mythread, nullptr);
-            pthread_create(&thread2, nullptr, mythread, nullptr);
-            pthread_create(&thread3, nullptr, mythread, nullptr);
-            pthread_create(&thread4, nullptr, mythread, nullptr);
-            pthread_create(&thread5, nullptr, mythread, nullptr);
-            pthread_create(&thread6, nullptr, mythread, nullptr);
-            pthread_create(&thread7, nullptr, mythread, nullptr);
-            pthread_create(&thread8, nullptr, mythread, nullptr);
+            for (auto &t : threads) {
+                pthread_create(&t, nullptr, mythread, nullptr);
+            }
 
-            pthread_join(thread1, nullptr);
-            pthread_join(thread2, nullptr);
-            pthread_join(thread3, nullptr);
-            pthread_join(thread4, nullptr);
-            pthread_join(thread5, nullptr);
-            pthread_join(thread6, nullptr);
-            pthread_join(thread7, nullptr);
-            pthread_join(thread8, nullptr);
+            for (auto &t : threads) {
+                pthread_join(t, nullptr);
+            }
         }
 
         std::cout << "count: " << count << '\n';
@@ -244,6 +228,7 @@ main()
 
 #if SNIPPET07
 
+#include <array>
 #include <iostream>
 #include <pthread.h>
 
@@ -262,32 +247,15 @@ main()
     while (true) {
         count = 0;
         for (auto i = 0; i < 1000; i++) {
-            pthread_t thread1;
-            pthread_t thread2;
-            pthread_t thread3;
-            pthread_t thread4;
-            pthread_t thread5;
-            pthread_t thread6;
-            pthread_t thread7;
-            pthread_t thread8;
+            std::array<pthread_t, 8> threads;
 
-            pthread_create(&thread1, nullptr, mythread, nullptr);
-            pthread_create(&thread2, nullptr, mythread, nullptr);
-            pthread_create(&thread3, nullptr, mythread, nullptr);
-            pthread_create(&thread4, nullptr, mythread, nullptr);
-            pthread_create(&thread5, nullptr, mythread, nullptr);
-            pthread_create(&thread6, nullptr, mythread, nullptr);
-            pthread_create(&thread7, nullptr, mythread, nullptr);
-            pthread_create(&thread8, nullptr, mythread, nullptr);
+            for (auto &t : threads) {
+                pthread_create(&t, nullptr, mythread, nullptr);
+            }
 
-            pthread_join(thread1, nullptr);
-            pthread_join(thread2, nullptr);
-            pthread_join(thread3, nullptr);
-            pthread_join(thread4, nullptr);
-            pthread_join(thread5, nullptr);
-            pthread_join(thread6, nullptr);
-            pthread_join(thread7, nullptr);
-            pthread_join(thread8, nullptr);
+            for (auto &t : threads) {
+                pthread_join(t, nullptr);
+            }
         }
 
         std::cout << "count: " << count << '\n';
@@ -303,7 +271,7 @@ main()
 
 #endif
 
-#if SNIPPET09
+#if SNIPPET08
 
 #include <iostream>
 #include <pthread.h>
@@ -346,7 +314,7 @@ main()
 
 #endif
 
-#if SNIPPET10
+#if SNIPPET09
 
 #include <iostream>
 #include <pthread.h>
@@ -389,11 +357,12 @@ main()
 
 #endif
 
-#if SNIPPET11
+#if SNIPPET10
 
 #include <iostream>
 #include <pthread.h>
 
+bool predicate = false;
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
@@ -401,6 +370,7 @@ void *mythread1(void *ptr)
 {
     pthread_mutex_lock(&lock);
     std::cout << "Hello World: 1\n";
+    predicate = true;
     pthread_mutex_unlock(&lock);
     pthread_cond_signal(&cond);
 
@@ -410,7 +380,9 @@ void *mythread1(void *ptr)
 void *mythread2(void *ptr)
 {
     pthread_mutex_lock(&lock);
-    pthread_cond_wait(&cond, &lock);
+    while(!predicate) {
+        pthread_cond_wait(&cond, &lock);
+    }
     std::cout << "Hello World: 2\n";
     pthread_mutex_unlock(&lock);
 
@@ -439,7 +411,7 @@ main()
 // Section: C++ Threads
 // -----------------------------------------------------------------------------
 
-#if SNIPPET12
+#if SNIPPET11
 
 #include <thread>
 #include <iostream>
@@ -464,7 +436,7 @@ main()
 
 #endif
 
-#if SNIPPET13
+#if SNIPPET12
 
 #include <thread>
 #include <iostream>
@@ -494,7 +466,7 @@ main()
 
 #endif
 
-#if SNIPPET14
+#if SNIPPET13
 
 #include <thread>
 #include <future>
@@ -529,7 +501,7 @@ main()
 
 #endif
 
-#if SNIPPET15
+#if SNIPPET14
 
 #include <thread>
 #include <iostream>
@@ -564,7 +536,7 @@ main()
 
 #endif
 
-#if SNIPPET16
+#if SNIPPET15
 
 #include <thread>
 #include <chrono>
@@ -593,7 +565,7 @@ main()
 
 #endif
 
-#if SNIPPET17
+#if SNIPPET16
 
 #include <mutex>
 #include <thread>
@@ -625,7 +597,7 @@ main()
 
 #endif
 
-#if SNIPPET17a
+#if SNIPPET17
 
 #include <mutex>
 #include <thread>
@@ -693,7 +665,7 @@ main()
 
 #endif
 
-#if SNIPPET18a
+#if SNIPPET19
 
 #include <mutex>
 #include <thread>
@@ -732,7 +704,7 @@ main()
 
 #endif
 
-#if SNIPPET19
+#if SNIPPET20
 
 #include <mutex>
 #include <thread>
@@ -827,7 +799,7 @@ main()
 
 #endif
 
-#if SNIPPET24
+#if SNIPPET23
 
 #include <shared_mutex>
 #include <thread>
@@ -875,7 +847,7 @@ main()
 
 #endif
 
-#if SNIPPET25
+#if SNIPPET24
 
 #include <mutex>
 #include <thread>
@@ -911,7 +883,7 @@ main()
 
 #endif
 
-#if SNIPPET26
+#if SNIPPET25
 
 #include <mutex>
 #include <condition_variable>
@@ -949,7 +921,7 @@ main()
 
 #endif
 
-#if SNIPPET27
+#if SNIPPET26
 
 #include <mutex>
 #include <condition_variable>
@@ -991,7 +963,7 @@ main()
 
 #endif
 
-#if SNIPPET28
+#if SNIPPET27
 
 #include <shared_mutex>
 #include <condition_variable>
@@ -1032,7 +1004,7 @@ main()
 
 #endif
 
-#if SNIPPET29
+#if SNIPPET28
 
 #include <mutex>
 #include <thread>
