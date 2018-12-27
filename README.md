@@ -46,8 +46,6 @@ With the following software and hardware list you can run all code files present
 | 1-13     | GCC 7+                               | Ubuntu 17.10+                       |
 | 1-13     | CMake 3.6+                           | Ubuntu 17.10+                       |
 
-We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it]().
-
 ### Related products
 * C++ Data Structures and Algorithms [[Packt]](https://www.packtpub.com/application-development/c-data-structures-and-algorithms?utm_source=github&utm_medium=repository&utm_campaign=9781788835213 ) [[Amazon]](https://www.amazon.com/dp/1788835212)
 
