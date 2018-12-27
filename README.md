@@ -53,10 +53,6 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 
 * C++ Reactive Programming [[Packt]](https://www.packtpub.com/application-development/c-reactive-programming?utm_source=github&utm_medium=repository&utm_campaign=9781788629775 ) [[Amazon]](https://www.amazon.com/dp/1788629779)
 
-*  [[Packt]]() [[Amazon]](https://www.amazon.com/dp/)
-
-*  [[Packt]]() [[Amazon]](https://www.amazon.com/dp/)
-
 ## Get to Know the Author
 **Dr. Rian Quinn**
 is a Chief Technology Officer (CTO) in the Advanced Technologies Business Unit at Assured Information Security, Inc. focused on trusted computing, hypervisor related technologies, machine learning/artificial intelligence, and cyber security for more than 10 years and has 9 years of technical management and business development experience. He holds a Ph.D. in Computer Engineering, specializations in information assurance and computer architectures, from Binghamton University. He is the co-founder and lead developer of the Bareflank Hypervisor, and is an active member of several open source projects, including Microsoft's Guideline Support Library (GSL) and OpenXT.
