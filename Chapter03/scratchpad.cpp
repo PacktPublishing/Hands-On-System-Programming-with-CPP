@@ -75,6 +75,7 @@ int main(void)
 #if SNIPPET04
 
 #include <iostream>
+#include <limits>
 
 int main(void)
 {
@@ -111,6 +112,7 @@ int main(void)
 #if SNIPPET05
 
 #include <iostream>
+#include <limits>
 
 int main(void)
 {
@@ -147,6 +149,7 @@ int main(void)
 #if SNIPPET06
 
 #include <iostream>
+#include <limits>
 
 int main(void)
 {
@@ -202,6 +205,7 @@ int main(void)
 #if SNIPPET08
 
 #include <iostream>
+#include <limits>
 
 int main(void)
 {
@@ -238,6 +242,7 @@ int main(void)
 #if SNIPPET09
 
 #include <iostream>
+#include <limits>
 
 int main(void)
 {
@@ -274,6 +279,7 @@ int main(void)
 #if SNIPPET10
 
 #include <iostream>
+#include <limits>
 
 int main(void)
 {
@@ -296,6 +302,7 @@ int main(void)
 #if SNIPPET11
 
 #include <iostream>
+#include <limits>
 
 int main(void)
 {
@@ -318,6 +325,7 @@ int main(void)
 #if SNIPPET12
 
 #include <iostream>
+#include <limits>
 
 int main(void)
 {
@@ -340,6 +348,7 @@ int main(void)
 #if SNIPPET13
 
 #include <iostream>
+#include <limits>
 
 int main(void)
 {
