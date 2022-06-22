@@ -802,6 +802,7 @@ main()
 #if SNIPPET23
 
 #include <shared_mutex>
+#include <mutex>
 #include <thread>
 #include <iostream>
 
