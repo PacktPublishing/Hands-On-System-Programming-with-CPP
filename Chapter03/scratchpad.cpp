@@ -116,33 +116,19 @@ int main(void)
 
 int main(void)
 {
-    auto num_bytes_signed = sizeof(signed wchar_t);
-    auto min_signed = std::numeric_limits<signed wchar_t>().min();
-    auto max_signed = std::numeric_limits<signed wchar_t>().max();
+    auto num_bytes = sizeof(wchar_t);
+    auto min = std::numeric_limits<wchar_t>().min();
+    auto max = std::numeric_limits<wchar_t>().max();
 
-    auto num_bytes_unsigned = sizeof(unsigned wchar_t);
-    auto min_unsigned = std::numeric_limits<unsigned wchar_t>().min();
-    auto max_unsigned = std::numeric_limits<unsigned wchar_t>().max();
-
-    std::cout << "num bytes (signed): " << num_bytes_signed << '\n';
-    std::cout << "min value (signed): " << +min_signed << '\n';
-    std::cout << "max value (signed): " << +max_signed << '\n';
-
-    std::cout << '\n';
-
-    std::cout << "num bytes (unsigned): " << num_bytes_unsigned << '\n';
-    std::cout << "min value (unsigned): " << +min_unsigned << '\n';
-    std::cout << "max value (unsigned): " << +max_unsigned << '\n';
+    std::cout << "num bytes: " << num_bytes << '\n';
+    std::cout << "min value: " << +min << '\n';
+    std::cout << "max value: " << +max << '\n';
 }
 
 // > g++ scratchpad.cpp; ./a.out
-// num bytes (signed): 4
-// min value (signed): -2147483648
-// max value (signed): 2147483647
-
-// num bytes (unsigned): 4
-// min value (unsigned): 0
-// max value (unsigned): 4294967295
+// num bytes: 4
+// min value: -2147483648
+// max value: 2147483647
 
 #endif
 
