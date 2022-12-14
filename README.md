@@ -1,3 +1,15 @@
+
+### Get this product for $5
+
+<i>Packt is having its biggest sale of the year. Get this eBook or any other book, video, or course that you like just for $5 each</i>
+
+
+<b><p align='center'>[Buy now](https://packt.link/9781789137880)</p></b>
+
+
+<b><p align='center'>[Buy similar titles for just $5](https://subscription.packtpub.com/search)</p></b>
+
+
 # Hands-On System Programming with C++
 
 <a href="https://www.packtpub.com/application-development/hands-system-programming-c?utm_source=github&utm_medium=repository&utm_campaign=9781789137880 "><img src="https://dz13w8afd47il.cloudfront.net/sites/default/files/imagecache/ppv4_main_book_cover/9781789137880_cover.png" alt="Hands-On System Programming with C++" height="256px" align="right"></a>
