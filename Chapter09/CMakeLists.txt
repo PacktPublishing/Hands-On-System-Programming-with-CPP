@@ -43,6 +43,7 @@ list(APPEND GSL_CMAKE_ARGS
 ExternalProject_Add(
     gsl
     GIT_REPOSITORY https://github.com/Microsoft/GSL.git
+    GIT_TAG v2.0.0
     GIT_SHALLOW 1
     CMAKE_ARGS ${GSL_CMAKE_ARGS}
     PREFIX ${CMAKE_BINARY_DIR}/external/gsl/prefix
@@ -66,6 +67,7 @@ list(APPEND CATCH_CMAKE_ARGS
 ExternalProject_Add(
     catch
     GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+    GIT_TAG devel
     GIT_SHALLOW 1
     CMAKE_ARGS ${CATCH_CMAKE_ARGS}
     PREFIX ${CMAKE_BINARY_DIR}/external/catch/prefix

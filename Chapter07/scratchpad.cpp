@@ -1036,6 +1036,7 @@ int main()
 
 #include <thread>
 #include <iostream>
+#include <memory>
 
 class myclass
 {
